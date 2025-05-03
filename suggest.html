@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edu College Suggester - Find Your Perfect College</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="responsive.css">
+    <style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #fff7f0;
+    color: #333;
+}
+
+header {
+    background-color: #ff6b00;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    position: relative;
+}
+
+.back-to-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+}
+
+.back-to-home:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.form-section {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff3e6;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.1);
+}
+
+.form-section h2 {
+    margin-bottom: 1rem;
+    color: #ff6b00;
+}
+
+form div {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffa54c;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #fff;
+    transition: border 0.3s ease;
+}
+
+input:focus, select:focus {
+    border-color: #ff6b00;
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: #ff6b00;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #e55a00;
+}
+
+.suggestions {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.college-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.college-card {
+    background: #fff0e0;
+    border-left: 6px solid #ff6b00;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 3px 10px rgba(255, 107, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.college-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 16px rgba(255, 107, 0, 0.25);
+}
+
+.college-card h3 {
+    color: #ff6b00;
+    margin-top: 0;
+}
+
+.college-card .links a {
+    display: inline-block;
+    margin-right: 12px;
+    color: #ff6b00;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.college-card .links a:hover {
+    color: #cc4d00;
+    text-decoration: underline;
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="index.html" class="back-to-home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            Back
+        </a>
+        <h1>Edu College Suggester</h1>
+        <p>Find the perfect college based on your preferences </p>
+    </header>
+
+    <section class="form-section">
+        <h2>Tell us your preferences</h2>
+        <form id="collegeForm">
+            <div>
+                <label for="field">Field of Study</label>
+                <select id="field" required>
+                    <option value="">-- Select Field --</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Medical">Medical</option>
+                    <option value="Management">Management</option>
+                    <option value="Law">Law</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Defense">Defense and Police</option>
+                    <option value="Education">Education and Teaching</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="courseType">Course Type</label>
+                <select id="courseType" required>
+                    <option value="">-- Select Course Type --</option>
+                </select>
+            </div>
+
+            <button type="submit">Suggest Colleges</button>
+        </form>
+    </section>
+
+    <section class="suggestions" id="suggestions"></section>
+
+
+    <script>
+        const fieldCourses = {
+            "Engineering": ["B.Tech", "M.Tech", "Diploma", "PhD"],
+            "Medical": ["MBBS", "BDS", "BPT", "BHMS"],
+            "Management": ["MBA", "BBA", "PGDM"],
+            "Law": ["LLB", "LLM", "BA LLB"],
+            "Finance": ["B.Com", "CA", "CFA", "M.Com"],
+            "Defense": ["NDA", "CDS", "B.Sc Defense"],
+            "Education": ["B.Ed", "M.Ed", "D.El.Ed"]
+        };
+
+        const collegesData = {
+            "Engineering": [
+                { 
+                    name: "IIT Delhi", 
+                    location: "Delhi", 
+                    fee: "₹2.2 LPA", 
+                    website: "https://home.iitd.ac.in", 
+                    exam: "https://jeemain.nta.nic.in",
+                    description: "Premier engineering institute with world-class facilities and faculty."
+                },
+                { 
+                    name: "IIT Bombay", 
+                    location: "Mumbai", 
+                    fee: "₹2.3 LPA", 
+                    website: "https://www.iitb.ac.in", 
+                    exam: "https://jeemain.nta.nic.in",
+                    description: "Top-ranked IIT with excellent placement records."
+                },
+                { 
+                    name: "BITS Pilani", 
+                    location: "Rajasthan", 
+                    fee: "₹3.8 LPA", 
+                    website: "https://www.bits-pilani.ac.in", 
+                    exam: "https://www.bitsadmission.com",
+                    description: "Leading private engineering university with flexible education system."
+                }
+            ],
+            "Medical": [
+                { 
+                    name: "AIIMS Delhi", 
+                    location: "Delhi", 
+                    fee: "₹1.2 LPA", 
+                    website: "https://www.aiims.edu", 
+                    exam: "https://neet.nta.nic.in",
+                    description: "India's premier medical institute with state-of-the-art facilities."
+                },
+                { 
+                    name: "CMC Vellore", 
+                    location: "Tamil Nadu", 
+                    fee: "₹1.0 LPA", 
+                    website: "https://www.cmch-vellore.edu", 
+                    exam: "https://neet.nta.nic.in",
+                    description: "Renowned for clinical excellence and patient care."
+                },
+                { 
+                    name: "JIPMER", 
+                    location: "Puducherry", 
+                    fee: "₹1.1 LPA", 
+                    website: "https://jipmer.edu.in", 
+                    exam: "https://neet.nta.nic.in",
+                    description: "Autonomous medical institution with excellent research facilities."
+                }
+            ],
+            "Management": [
+                { 
+                    name: "IIM Ahmedabad", 
+                    location: "Gujarat", 
+                    fee: "₹4 LPA", 
+                    website: "https://www.iima.ac.in", 
+                    exam: "https://iimcat.ac.in",
+                    description: "Top-ranked business school in India with global recognition."
+                },
+                { 
+                    name: "IIM Bangalore", 
+                    location: "Karnataka", 
+                    fee: "₹4 LPA", 
+                    website: "https://www.iimb.ac.in", 
+                    exam: "https://iimcat.ac.in",
+                    description: "Innovative management programs with strong industry connections."
+                },
+                { 
+                    name: "Symbiosis", 
+                    location: "Pune", 
+                    fee: "₹2.5 LPA", 
+                    website: "https://www.sibmpune.edu.in", 
+                    exam: "https://www.snaptest.org",
+                    description: "Leading private B-school with diverse specializations."
+                }
+            ],
+            "Law": [
+                { 
+                    name: "NLSIU Bangalore", 
+                    location: "Karnataka", 
+                    fee: "₹2.3 LPA", 
+                    website: "https://www.nls.ac.in", 
+                    exam: "https://consortiumofnlus.ac.in",
+                    description: "India's premier law school with excellent faculty and moot court facilities."
+                },
+                { 
+                    name: "NALSAR Hyderabad", 
+                    location: "Telangana", 
+                    fee: "₹2.2 LPA", 
+                    website: "https://www.nalsar.ac.in", 
+                    exam: "https://consortiumofnlus.ac.in",
+                    description: "Renowned for its rigorous academic program and research output."
+                }
+            ],
+            "Finance": [
+                { 
+                    name: "SRCC", 
+                    location: "Delhi", 
+                    fee: "₹70K/year", 
+                    website: "https://www.srcc.edu", 
+                    exam: "https://cuet.samarth.ac.in",
+                    description: "Top commerce college with excellent placement records in finance."
+                },
+                { 
+                    name: "Narsee Monjee", 
+                    location: "Mumbai", 
+                    fee: "₹1.2 LPA", 
+                    website: "https://www.nmims.edu", 
+                    exam: "https://www.nmims.edu/admissions",
+                    description: "Premier institution for finance and commerce education."
+                }
+            ],
+            "Defense": [
+                { 
+                    name: "National Defence Academy", 
+                    location: "Pune", 
+                    fee: "Govt-sponsored", 
+                    website: "https://nda.nic.in", 
+                    exam: "https://upsconline.nic.in",
+                    description: "Joint services academy of the Indian Armed Forces."
+                },
+                { 
+                    name: "Indian Military Academy", 
+                    location: "Dehradun", 
+                    fee: "Govt-sponsored", 
+                    website: "https://indianarmy.nic.in", 
+                    exam: "https://upsconline.nic.in",
+                    description: "Officers' training academy of the Indian Army."
+                }
+            ],
+            "Education": [
+                { 
+                    name: "Jamia Millia Islamia", 
+                    location: "Delhi", 
+                    fee: "₹40K/year", 
+                    website: "https://www.jmi.ac.in", 
+                    exam: "https://jmi.ac.in/admissions",
+                    description: "Central university with excellent education department."
+                },
+                { 
+                    name: "Delhi University (CIE)", 
+                    location: "Delhi", 
+                    fee: "₹35K/year", 
+                    website: "http://cie.du.ac.in", 
+                    exam: "https://cuet.samarth.ac.in",
+                    description: "Premier institution for teacher education programs."
+                }
+            ]
+        };
+
+        // Dynamically populate Course Type based on field
+        const fieldSelect = document.getElementById('field');
+        const courseTypeSelect = document.getElementById('courseType');
+
+        fieldSelect.addEventListener('change', function() {
+            const selectedField = this.value;
+            const courses = fieldCourses[selectedField] || [];
+
+            courseTypeSelect.innerHTML = '<option value="">-- Select Course Type --</option>';
+            courses.forEach(course => {
+                const opt = document.createElement('option');
+                opt.value = course;
+                opt.innerText = course;
+                courseTypeSelect.appendChild(opt);
+            });
+        });
+
+        // Form Submission
+        const form = document.getElementById('collegeForm');
+        const suggestionsDiv = document.getElementById('suggestions');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const field = fieldSelect.value;
+            const courseType = courseTypeSelect.value;
+
+            const colleges = collegesData[field] || [];
+
+            suggestionsDiv.innerHTML = `
+                <h2>Suggested Colleges for ${field} (${courseType})</h2>
+                <div class="college-list">
+                    ${colleges.map(college => `
+                        <div class="college-card">
+                            <h3>${college.name}</h3>
+                            <p><strong>Location:</strong> ${college.location}</p>
+                            <p><strong>Annual Fee:</strong> ${college.fee}</p>
+                            <p>${college.description}</p>
+                            <div class="links">
+                                <a href="${college.website}" target="_blank">Visit Website</a>
+                                <a href="${college.exam}" target="_blank">Exam Details</a>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+/* -----------------------------------
+   MOBILE FIXES FOR ALL PAGES
+------------------------------------ */
+@media screen and (max-width: 768px) {
+
+  /* HEADER FIX */
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 10px;
+    position: relative;
+  }
+
+  header h1 {
+    font-size: 20px;
+    margin: 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .back-to-home {
+    position: absolute;
+    top: 15px;
+    left: 10px;
+    font-size: 14px;
+    padding: 8px 12px;
+    background-color: #e67e22;
+    color: white;
+    border-radius: 5px;
+    z-index: 10;
+  }
+
+  /* HERO SECTION - HOMEPAGE */
+  .hero {
+    text-align: center;
+    padding: 15px 10px;
+  }
+
+  .hero h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .hero p {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .hero button {
+    font-size: 16px;
+    padding: 12px;
+    width: 90%;
+    max-width: 350px; /* Set a max width for the button */
+    background-color: #ff6200;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  /* FEATURE BLOCKS (Search, Register, Compare) */
+  .features {
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .hoverboard-box {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* COLLEGE CARDS */
+  .college-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .college-card {
+    width: 100%;
+    background: #fff8ed;
+    padding: 15px;
+    border: 1px solid #f5cba7;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .college-card h3 {
+    font-size: 16px;
+    color: #e67e22;
+  }
+
+  .college-card p {
+    font-size: 14px;
+    color: #444;
+  }
+
+  /* COLLEGE FILTER BUTTONS */
+  .exam-categories,
+  .course-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .filter-btn {
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: 6px;
+    background-color: #f0932b;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* BACK BUTTON POSITIONING FOR ALL PAGES */
+  .back-to-home {
+    font-size: 14px;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+  }
+
+  /* COURSE CARDS */
+  .course-card, .course-box {
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+  }
+
+  .course-box h3, .course-card h3 {
+    font-size: 16px;
+  }
+
+  .course-box p, .course-card p {
+    font-size: 14px;
+  }
+
+  /* BUTTONS & SPACING */
+  .register-button,
+  .view-more,
+  .cta-btn,
+  .contact-btn {
+    width: 90%;
+    margin: 12px auto;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: #f0932b;
+    color: white;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  /* UPCOMING EXAMS */
+  .exam-item {
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+    background: #fff3e0;
+    text-align: center;
+  }
+
+  .exam-item h3 a {
+    font-size: 16px;
+    color: #e67e22;
+  }
+
+  .exam-item p {
+    font-size: 14px;
+  }
+
+  /* CONTACT SECTION */
+  .homepage-contact {
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  .homepage-contact p {
+    font-size: 14px;
+  }
+
+  .social-links a {
+    font-size: 14px;
+    margin: 5px 10px;
+    display: inline-block;
+    color: #e67e22;
+  }
+  
+  /* Responsive dropdown for select options */
+  select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+  }
+
+  /* Improve button visibility */
+  .button {
+    padding: 14px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    background-color: #e67e22;
+    color: white;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Fix alignment of scrollable items */
+  .scroll-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    overflow-x: auto;
+  }
+  
+  .scroll-btn {
+    background-color: #f0932b;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+  }
+
+  .view-more-btn {
+    text-align: center;
+    display: block;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    background-color: #f0932b;
+    color: white;
+    width: 90%;
+    margin: 20px auto;
+    cursor: pointer;
+  }
+
+}

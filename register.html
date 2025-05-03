@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Register | EDU College</title>
+  <link rel="stylesheet" href="register.css" />
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="logo">EDU College</div>
+    <nav class="nav-links">
+      <a href="index.html" class="back-home-btn">Back</a>
+    </nav>
+  </header>
+
+  <div class="auth-wrapper">
+    <div class="auth-box">
+
+      <!-- Toggle -->
+      <div class="form-toggle">
+        <button id="toggle-login" class="active">Login</button>
+        <button id="toggle-register">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <div id="login-form" class="form-section active">
+        <h2>Login</h2>
+        <form>
+          <label>Email or Username</label>
+          <input type="text" required />
+          <label>Password</label>
+          <input type="password" required />
+          <button type="submit">Login</button>
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div id="register-form" class="form-section">
+        <h2>Register Now</h2>
+        <div class="progress-bar">
+          <div class="step step-1 active">1</div>
+          <div class="step step-2">2</div>
+          <div class="step step-3">3</div>
+        </div>
+
+          <!-- Step 1 -->
+          <div class="form-step active" id="step-1">
+            <label>Full Name</label>
+            <input type="text" placeholder="Enter your name" required />
+            <label>Email</label>
+            <input type="email" placeholder="Enter your email" required />
+            <label>Mobile Number</label>
+           <input type="tel" placeholder="Enter your mobile number" pattern="[0-9]{10}" required />
+            <button type="button" class="next-btn">Next</button>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="form-step" id="step-2">
+            <label>Preferred Course</label>
+            <select required>
+              <option disabled selected>Select your course</option>
+              <option>Engineering</option>
+              <option>Medicine</option>
+              <option>Law</option>
+              <option>Arts</option>
+              <option>Science</option>
+              <option>Commerce</option>
+              <option>Management</option>
+            </select>
+
+            <label>College Choice</label>
+            <select required>
+              <option disabled selected>Select your college</option>
+              <option>IIT Bombay</option>
+              <option>IIT Delhi</option>
+              <option>IIM Ahmedabad</option>
+              <option>AIIMS Delhi</option>
+              <option>JNU</option>
+              <option>Delhi University</option>
+              <option>BITS Pilani</option>
+            </select>
+
+            <button type="button" class="prev-btn">Back</button>
+            <button type="button" class="next-btn">Next</button>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="form-step" id="step-3">
+            <label>Password</label>
+            <input type="password" placeholder="Create a password" required />
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Confirm your password" required />
+            <button type="button" class="prev-btn">Back</button>
+            <button type="submit" class="submit-btn">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+</body>
+</html>
